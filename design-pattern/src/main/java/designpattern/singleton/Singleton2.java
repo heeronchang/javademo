@@ -1,4 +1,4 @@
-package singleton;
+package designpattern.singleton;
 
 // 懒汉式， 线程安全， 效率低
 public class Singleton2 {

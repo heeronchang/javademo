@@ -1,4 +1,4 @@
-package singleton;
+package designpattern.singleton;
 
 /**
  * 使用内部类延迟创建，使用了JVM 的类加载机制，保证线程安全

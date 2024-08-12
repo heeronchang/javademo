@@ -3,20 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.hc.user</groupId>
+        <artifactId>demo</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
-    <groupId>org.hc.user</groupId>
-    <artifactId>demo</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>servlet-stu</module>
-        <module>algo</module>
-        <module>design-pattern</module>
-        <module>concurrency</module>
-        <module>collection</module>
-        <module>jdk-api</module>
-        <module>interview</module>
-    </modules>
+    <artifactId>servlet-stu</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -25,12 +18,17 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
+    <packaging>war</packaging>
+    <build>
+        <finalName>servlet-stu</finalName>
+    </build>
 </project>
