@@ -1,23 +1,11 @@
 package algo.sort;
 
 /**
- * 每轮从未排序区间，选择最小的元素，将其放在已排序区间末尾
+ * SelectionSort
+ * https://www.hello-algo.com/chapter_sorting/selection_sort/
+ * 每轮从未排序区间选择最小的元素，将其放到已排序区间的末尾
  */
 public class Selection {
-    public static void sort(int[] arr) {
-        int len = arr.length;
-
-        for (int i = 0; i < len; i++) {
-            for (int j = i + 1; j < len; j++) {
-                if (arr[i] > arr[j]) {
-                    int tmp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = tmp;
-                }
-            }
-        }
-    }
-
     public static void sort2(int[] arr) {
         int len = arr.length;
         // i < len - 1; 最后一个元素不需要再排序
