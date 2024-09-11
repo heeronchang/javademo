@@ -1,5 +1,6 @@
 package lock.reentrant;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -15,5 +16,16 @@ public class ReentrantTest {
         lock.lock();
         hello();
         lock.unlock();
+    }
+
+    class A  implements Callable<String> {
+        public void a() {
+            System.out.println("a");
+        }
+
+        @Override
+        public String call() throws Exception {
+            return "";
+        }
     }
 }
