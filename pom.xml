@@ -16,6 +16,8 @@
         <module>collection</module>
         <module>jdk-api</module>
         <module>interview</module>
+        <module>io</module>
+        <module>redis</module>
     </modules>
 
     <properties>
