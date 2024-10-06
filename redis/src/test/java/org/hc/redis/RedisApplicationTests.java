@@ -1,6 +1,8 @@
 package org.hc.redis;
 
+import org.hc.redis.list.ListRW;
 import org.hc.redis.string.StringRW;
+import org.hc.redis.zset.ZSetRW;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +29,12 @@ class RedisApplicationTests {
 
     @Autowired
     private StringRW stringRW;
+
+    @Autowired
+    private ListRW listRW;
+
+    @Autowired
+    private ZSetRW zSetRW;
 
     @Test
     void contextLoads() {
@@ -108,4 +116,64 @@ class RedisApplicationTests {
         System.out.println(stringRW.setNx("nx-key", "nx-value"));
     }
 
+    @Test
+    public void testListRWPush() {
+        listRW.lPush("list-key", "1");
+        listRW.lPush("list-key", "2");
+        listRW.lPush("list-key", "3");
+        listRW.lPush("list-key", "2");
+        listRW.rPush("list-key", "4");
+    }
+
+    @Test
+    public void testListRWRange() {
+        System.out.println(listRW.range("list-key", 0, -1));
+    }
+
+    @Test
+    public void testListRWGet() {
+        System.out.println(listRW.get("list-key", 2));
+    }
+
+    @Test
+    public void testListRWSet() {
+        listRW.set("list-key", 2, "22");
+    }
+
+    @Test
+    public void testListRWRemove() {
+        listRW.remove("list-key", 2, "22");
+    }
+
+    @Test
+    public void testListSize() {
+        System.out.println(listRW.size("list-key"));
+    }
+
+    @Test
+    public void testListRWTrim() {
+        listRW.trim("list-key", 0, 1);
+    }
+
+    @Test
+    public void testZSetRW() {
+        System.out.println(zSetRW.add("zset-key", "zset-member1", 1));
+        System.out.println(zSetRW.add("zset-key", "zset-member1", 2));
+        zSetRW.add("zset-key", "zset-member2", 1);
+        zSetRW.add("zset-key", "zset-member3", 3);
+    }
+
+    @Test
+    public void testZSetRWRemove() {
+        zSetRW.remove("zset-key", "zset-member1", "zset-member2");
+    }
+
+    @Test
+    public void testZSetRWRange() {
+        System.out.println(zSetRW.rank("zset-key", "zset-member2"));
+        System.out.println(zSetRW.range("zset-key", 0, -1));
+        System.out.println(zSetRW.rangeWithScores("zset-key", 0, -1));
+        System.out.println(zSetRW.reverseRange("zset-key", 0, -1));
+        System.out.println(zSetRW.reverseRangeWithScores("zset-key", 0, -1));
+    }
 }
