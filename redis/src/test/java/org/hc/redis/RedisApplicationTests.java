@@ -19,7 +19,7 @@ class RedisApplicationTests {
 
     // 自定义默认redisTemplate
     @Autowired
-    private RedisTemplate<String, Object> defaultRedisTemplate;
+    private RedisTemplate<String, String> defaultRedisTemplate;
 
     // 自定义从redisTemplate
     @Autowired
@@ -72,10 +72,10 @@ class RedisApplicationTests {
 
     @Test
     public void testStringRWIncrDecr() {
-        stringRW.increment("incr-decr-key", 5);
-        System.out.println(stringRW.get("incr-decr-key"));
-        stringRW.decrement("incr-decr-key", 1);
-        System.out.println(stringRW.get("incr-decr-key"));
+        stringRW.increment("incr-decr-key1", 10);
+        System.out.println(stringRW.get("incr-decr-key1"));
+        stringRW.decrement("incr-decr-key1", 1);
+        System.out.println(stringRW.get("incr-decr-key1"));
     }
 
     @Test

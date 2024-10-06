@@ -19,14 +19,14 @@ import java.util.Objects;
  */
 @Component
 public class StringRW {
-    private final RedisTemplate<String, Object> defaultRedisTemplate;
+    private final RedisTemplate<String, String> defaultRedisTemplate;
 
     @Autowired
-    public StringRW(RedisTemplate<String, Object> defaultRedisTemplate) {
+    public StringRW(RedisTemplate<String, String> defaultRedisTemplate) {
         this.defaultRedisTemplate = defaultRedisTemplate;
     }
 
-    public void set(String key, Object value) {
+    public void set(String key, String value) {
         defaultRedisTemplate.opsForValue().set(key, value);
     }
 
@@ -36,7 +36,7 @@ public class StringRW {
      * @param value
      * @param timeout
      */
-    public void setWithExpire(String key, Object value, long timeout) {
+    public void setWithExpire(String key, String value, long timeout) {
         defaultRedisTemplate.opsForValue().set(key, value, timeout);
 //        defaultRedisTemplate.expire(key, Duration.ofMillis(timeout));
     }
@@ -47,7 +47,7 @@ public class StringRW {
      * @param value
      * @return
      */
-    public Boolean setNx(String key, Object value) {
+    public Boolean setNx(String key, String value) {
         return defaultRedisTemplate.opsForValue().setIfAbsent(key, value);
     }
 
@@ -67,7 +67,7 @@ public class StringRW {
         defaultRedisTemplate.opsForValue().multiSet(kvs);
     }
 
-    public List<Object> batchGet(List<String> keys) {
+    public List<String> batchGet(List<String> keys) {
         return defaultRedisTemplate.opsForValue().multiGet(keys);
     }
 
