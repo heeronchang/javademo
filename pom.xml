@@ -18,6 +18,7 @@
         <module>interview</module>
         <module>io</module>
         <module>redis</module>
+        <module>html2pdf</module>
     </modules>
 
     <properties>
