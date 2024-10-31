@@ -44,7 +44,7 @@ public class RedisAutoConfiguration {
         template.setValueSerializer(serializer);
         template.setHashKeySerializer(serializer);
         template.setHashValueSerializer(serializer);
-//        System.out.println("serializer "+ template.getKeySerializer());
+//        System.out.println("serializer "+ templates.getKeySerializer());
         template.afterPropertiesSet();
         return template;
     }
