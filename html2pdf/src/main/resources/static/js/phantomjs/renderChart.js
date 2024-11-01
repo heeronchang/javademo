@@ -43,5 +43,5 @@ page.open("about:blank", function(status) {
     window.setTimeout(function() {
         page.render(outputPath);
         phantom.exit();
-    }, 3000);  // 等待3秒，确保图表渲染完成
+    }, 8000);  // 等待8秒，确保图表渲染完成
 });

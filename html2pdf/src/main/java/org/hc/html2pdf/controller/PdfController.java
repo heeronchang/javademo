@@ -52,7 +52,8 @@ public class PdfController {
             }
         });
         model.addAttribute("seriesData", seriesData);
-        return "test-template";
+//        return "test-template";
+        return "phantomjs-template";
     }
 
     @GetMapping("/gen")

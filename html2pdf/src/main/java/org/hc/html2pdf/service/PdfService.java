@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -14,10 +15,12 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -47,8 +50,14 @@ public class PdfService {
         String templateString = getTemplateString(request, response, variables);
 
         PdfRendererBuilder builder = new PdfRendererBuilder();
-        builder.useFastMode();
-        builder.withHtmlContent(templateString, null);
+        try {
+            builder.useFont(ResourceUtils.getFile("classpath:static/fonts/simsun.ttf"), "simsun");
+        } catch (FileNotFoundException e) {
+            log.error("get font resource err.", e);
+        }
+        String baseUri = Objects.requireNonNull(getClass().getResource("/static")).toString();
+        log.warn("baseUri:{}", baseUri);
+        builder.withHtmlContent(templateString, baseUri);
         builder.toStream(os);
         try {
             builder.run();
@@ -125,6 +134,7 @@ public class PdfService {
 
         Context context = getContext(request, response, variables);
         String templateString = templateEngine.process("phantomjs-template", context);
+//        String templateString = templateEngine.process("test-header", context);
 //        log.info("templateString:{}", templateString);
         return templateString;
     }

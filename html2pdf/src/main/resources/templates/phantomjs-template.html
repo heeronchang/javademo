@@ -1,25 +1,117 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hello Thymeleaf</title>
+    <title>报表</title>
     <!--    <script src="../static/js/echarts/echarts.js"></script>-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"></link>
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"></link>-->
+    <style>
+        @page {
+            @top-left {
+                content: element(pagehead);
+            }
+            @bottom-right {
+                content: counter(page) "/" counter(pages);
+                font-size: 12pt;
+                text-align: center;
+                padding: 10px;
+                /*border-top: 1px solid #000;*/
+            }
+            size: A4 portrait;
+            margin-top: 80px; /* 设置页边距 */
+            margin-bottom: 50px;
+        }
+
+        div#header {
+            position: running(pagehead);
+            height: 60px;
+            display: inline-block;
+        }
+
+        .page-break {
+            page-break-after: always; /* 在这个元素之后强制分页 */
+        }
+
+        html, body {
+            font-family: 'simsun', sans-serif;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cover {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .introduction {
+            width: 100%;
+            padding-top: 200px;
+        }
+        .introduction span {
+            display: block;
+            font-style: italic;
+            color: #404e94;
+        }
+
+        .person-info {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            width: 100%;
+            height: 50%;
+
+            background-image: url("./static/images/logo.jpg");
+            background-position: right bottom;
+            background-repeat: no-repeat;
+            background-size: 500px 310px;
+        }
+        .person-info span {
+            line-height: 30px;
+            font-weight: 400;
+        }
+    </style>
 </head>
 <body>
-<h1 th:text="'Hello, ' + ${name} + '!'" class="text-center">Hello, World!</h1>
-<p class="text-center">1</p>
-<div id="main" style="width: 600px;height:400px; background-color: beige;">
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}" />
+<div id="header">
+    <img style="height: 60px;" src="./static/images/logo.jpg"/>
+    <span style="margin-left: 2px; font-size: 24px; font-weight: bold; font-style: italic;">全人文化</span>
+</div>
+<div class="main">
+    <div class="cover full-page page-break">
+        <!--        <h1 th:text="'Hello, ' + ${name} + '!'" class="text-center">全人家庭养育测评</h1>-->
+        <div class="introduction">
+            <h1 class="text-center">全人家庭养育测评</h1>
+            <span>全人家庭养育测评旨在全面评估家庭养育状况</span>
+            <span>为实现科学、有效且个性化的养育提供精准依据和改进建议</span>
+        </div>
+        <div class="person-info">
+            <div><span>姓 名： </span><span th:text="${name}"></span></div>
+            <div><span>性 别： </span><span>男</span></div>
+            <div><span>年 龄： </span><span>6</span></div>
+        </div>
+    </div>
+    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
     <p>2</p>
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}" />
+    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
     <p>3</p>
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}" />
+    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
     <p>4</p>
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}" />
+    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
     <p>5</p>
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}" />
+    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
     <p>6</p>
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}" />
+    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
 </div>
 </body>
 </html>
