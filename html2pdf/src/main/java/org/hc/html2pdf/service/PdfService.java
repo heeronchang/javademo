@@ -90,6 +90,7 @@ public class PdfService {
         // 2. 定义输出图表图片的路径
         String outputPath = "html2pdf/src/main/resources/temp/charts/figure1.png";
 
+        // TODO：考虑使用临时文件夹作为缓存，避免每次都调用phantomjs生成
         // 3. 调用 PhantomJS 渲染脚本
         // 3. 获取PhantomJS脚本的绝对路径
         URL resourceUrl = PdfService.class.getClassLoader().getResource("static/js/phantomjs/renderChart.js");

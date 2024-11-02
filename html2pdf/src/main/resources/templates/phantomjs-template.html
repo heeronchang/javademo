@@ -56,6 +56,7 @@
             width: 100%;
             padding-top: 200px;
         }
+
         .introduction span {
             display: block;
             font-style: italic;
@@ -76,9 +77,75 @@
             background-repeat: no-repeat;
             background-size: 500px 310px;
         }
+
         .person-info span {
             line-height: 30px;
             font-weight: 400;
+        }
+
+        .report-container {
+            /*background-color: antiquewhite;*/
+        }
+
+        .report-container h1 {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            color: #404e94;
+        }
+        .report-container .tip-wrap {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            width: 100%;
+            /*height: 100px;*/
+            text-align: center;
+            /*border: 1px solid red;*/
+            font-size: 0;
+        }
+        .report-container .tip-wrap img {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 16px;
+            margin: 0;
+            /*border: 1px solid rgb(234 179 8);*/
+            overflow: hidden;
+        }
+        .report-container .tip-wrap p {
+            display: inline-block;
+            text-align: left;
+            vertical-align: top;
+            width: 200px;
+            font-size: 14px;
+            color: #333;
+            margin: 0 20px 0;
+        }
+        .report-container h2 {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            color: #404e94;
+        }
+        .report-container h3 {
+            display: inline-block;
+            width: 100%;
+            text-align: left;
+            color: rgb(234 179 8);
+        }
+        .report-container p {
+            color: #000000;
+            font-size: 16px;
+            /*text-indent: 32px;*/
+        }
+        .report-container img {
+            width: 600px;
+            height: 400px;
+            display: block;
+            /*position: relative;*/
+            /*left: 50%;*/
+            /*transform: translateX(-50%);*/
+            margin: 50px auto;
         }
     </style>
 </head>
@@ -101,17 +168,28 @@
             <div><span>年 龄： </span><span>6</span></div>
         </div>
     </div>
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
-    <p>2</p>
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
-    <p>3</p>
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
-    <p>4</p>
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
-    <p>5</p>
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
-    <p>6</p>
-    <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
+    <div class="report-container">
+        <h1>评估结果说明</h1>
+        <div class="tip-wrap">
+<!--            <img alt="全人家庭养育测评" th:src="@{/images/tips-logo.png}" />-->
+            <img alt="全人家庭养育测评" src="./static/images/tips-logo.png" />
+            <p>家庭养育在孩子的成长过程中起着至关重要的作用。为了帮助家长更好地了解各自家庭养育子女的实际情况，专门研发了全人家庭养育测评</p>
+        </div>
+        <h2>根据测评结果，您家庭养育子女的实际情况如下:</h2>
+        <h3>01 家庭养育要素是指在家庭环境中对孩子的成长和发展起到关键作用的一系列重要因素。</h3>
+        <p th:text="${factorText}">养育要素</p>
+        <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
+        <h3>02 家庭养育方式:家庭养育模式指的是父母或主要养育者在抚养和教育孩子过程中所采用的一套相对稳定且具有特点的方式和方法。</h3>
+        <p th:text="${methodText}">养育方式</p>
+        <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
+        <h3>03 家庭养育环境:家庭养育环境是指家庭中对孩子成长产生影响的各种因素所构成的整体氛围、条件与状况。</h3>
+        <p th:text="${environmentText}">养育环境</p>
+        <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
+        <h3>04 性格 :孩子天生的思维及行为方式。</h3>
+        <p th:text="characterText">性格</p>
+        <img th:src="'data:image/png;base64,' + ${figure1Base64Url}"/>
+        <p>此测评真实反应了您家庭养育孩子的实际情况，希望能对您的家庭养育产生价值，期待针对各部分内容与您深入探讨，如有需求请与我们联系。</p>
+    </div>
 </div>
 </body>
 </html>
